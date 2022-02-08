@@ -1,8 +1,8 @@
 package greetings
 
 import (
+	"golang_starter/pkg/greetings"
 	"regexp"
-	"rest_api_go/pkg/greetings"
 	"testing"
 )
 

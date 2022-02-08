@@ -22,6 +22,7 @@ _testmain.go
 *.exe
 *.test
 
-# intellij
+# project
 .idea
 *.iml
+bin
