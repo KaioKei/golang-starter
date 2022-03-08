@@ -2,7 +2,7 @@
 
 ## Download
 
-Install this project into `$GO_ROOT/src/`.
+Install this project into `$GO_ROOT/src/` or create a symbolic link to it.
 
 ## Test
 
@@ -33,3 +33,8 @@ From custom script:
 ./install.sh
 ./bin/hello
 ```
+
+## Sources
+
+1.[Basic Golang official tutorial: hello](https://go.dev/doc/tutorial/getting-started)
+2.[Golang thematical tutorial from Callicoder](https://github.com/callicoder/golang-tutorials)
