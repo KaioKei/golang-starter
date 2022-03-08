@@ -7,6 +7,7 @@ Install this project into `$GO_ROOT/src/`.
 ## Test
 
 ```sh
+# x/... matches x as well as x's subdirectories.
 go test ./test/...
 ```
 
