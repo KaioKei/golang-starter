@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func initVariables() {
+func variables() {
 	// one after one
 	var firstName string // set as ""
 	var lastName string  // set as ""
@@ -44,6 +44,7 @@ func initVariables() {
 	const favoriteLanguage string = "Golang"
 	const currentMajorVersion int = 1
 	const currentMinorVersion int = 18
+	const typedInteger = currentMajorVersion // this var is typed since it is instantiated from an int
 	// cannot be changed
 	// favoriteLanguage = "Python" // will provoke compiler error
 }
