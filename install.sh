@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT_PATH="$(realpath "$0")"
-PROJECT_DIR="$(dirname "${BIN_DIR}")"
+PROJECT_DIR="$(dirname "${SCRIPT_PATH}")"
 CMD_DIR="${PROJECT_DIR}/cmd"
 BIN_DIR="${PROJECT_DIR}/bin"
 
