@@ -4,6 +4,10 @@
 
 Install this project into `$GO_ROOT/src/` or create a symbolic link to it.
 
+```sh
+git clone https://gitlab.com/MrCachou/golang_starter
+```
+
 ## Development
 
 Use goenv locally with this project.
@@ -73,6 +77,7 @@ buildah config \
     "$CONTAINER"
 # commit the container, i.e create a new image with the configured container
 buildah commit "$CONTAINER" "localhost/hello-debug"
+buildah images  # should show localhost/hello-debug
 ```
 
 Run the container with podman and expose the Delve's debug port : 
@@ -89,54 +94,45 @@ Then you can use your IDE for remote debug using the same host:port to communica
 
 Firts, build the image following the [Container Remote Debug section](#container-remote-debug).
 
-Then push the image in a local registry.
+Then push the image in a local registry :
 
-Create a deployment :
+```sh
+podman tag localhost/hello-debug localhost:5000/hello-debug
+podman push localhost:5000/hello-debug
+```
+
+    **WARN**: How to create a private registry is out of scope 
+
+Create a debug pod :
 
 ```yaml
 ---
 apiVersion: v1
-kind: Namespace
+kind: Pod
 metadata:
-  name: test
----        
-apiVersion: apps/v1     
-kind: Deployment        
-metadata:  
-  labels:  
-    app: hello-debug-app
-  name: hello-debug     
-  namespace: test      
-spec:      
-  replicas: 3           
-  selector:
-    matchLabels:        
-      app: hello-debug-app           
-  template:
-    metadata:           
-      labels:           
-        app: hello-debug-app         
-    spec:  
-      containers:       
-        - image: localhost:5000/hello-debug   
-          name: hello-debug
-          ports:        
-            - containerPort: 2345      
----        
-apiVersion: v1          
-kind: Service           
-metadata:  
-  name: hello-debug-svc 
-  namespace: hello      
-  labels:  
-    app: hello-debug-app
-spec:      
-  selector:
-    app: hello-debug-app
-  ports:   
-    - protocol: TCP     
-      port: 2345
-      targetPort: 2345
+  name: hello-debug
+  namespace: test
+spec:
+  containers:
+    - name: hello-debug
+      image: localhost:5000/hello-debug
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 2345
+```
+
+Forward the debug port :
+
+```sh
+kubectl -n test port-forward pod/hello-debug 2345:2345
+```
+
+And start debugging !
+
+You also can print the logs to help during debug :
+
+```sh
+kubectl -n test logs hello-debug -f
 ```
 
 ## Sources

@@ -31,6 +31,12 @@ func functions() {
 	defaultResult, changedResult := namedReturn()
 	fmt.Println("Default result should be 0: ", defaultResult)
 	fmt.Println("Changed result should be 10: ", changedResult)
+
+	// blank return
+	isZero, _ := namedReturn()
+	_, isTen := namedReturn()
+	fmt.Println("Result should be 0: ", isZero)
+	fmt.Println("Result should be 10: ", isTen)
 }
 
 func say(s string) {
@@ -65,5 +71,8 @@ func namedReturn() (resultByDefault, resultChanged int) {
 	// So we cannot change it with ':=' but only with '='
 	resultChanged = 10
 	// It allows as to return both the variables without naming it
+	// so the returned values are :
+	//   - 'resultByDefault=0' since it as an int and we have not modified it
+	//   - 'resultChanged=10' since we modified it
 	return
 }
