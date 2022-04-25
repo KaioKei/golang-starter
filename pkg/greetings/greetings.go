@@ -7,11 +7,6 @@ import (
 	"time"
 )
 
-// The 'init' function allows us to set up database connections, or register with various service registries, or perform
-// any number of other tasks that you typically only want to do once.
-// Otherwise, check 'New()' functions to initiate such things once per structure and not per callback.
-// It’s incredibly important to note that you cannot rely upon the order of execution of your init() functions.
-// It’s instead better to focus on writing your systems in such a way that the order does not matter.
 func init() {
 	// initiate math/rand once after 'greetings' package call
 	rand.Seed(time.Now().UnixNano())
