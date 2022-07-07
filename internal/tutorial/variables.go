@@ -13,7 +13,7 @@ func variables() {
 	var boy bool         // set as False
 	var blood rune       // rune is the 'Char' type, equivalent to int32, set as '' by default
 	var bloodBis byte    // byte is also the 'Char' type, equivalent to uint8, set as '' by default
-	fmt.Printf("firstName: %s, lastName: %s, age: %d, weight: %f, gender: %t, blood group: %d, blood group: %d\n",
+	fmt.Printf("firstName: %s, lastName: %s, age: %d, weight: %f, boy: %t, blood group: %d, blood group: %d\n",
 		firstName, lastName, age, weight, boy, blood, bloodBis)
 
 	// all at once
