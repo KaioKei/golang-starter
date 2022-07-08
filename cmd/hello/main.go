@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"golang_starter/pkg/greetings"
 	"log"
 	"rsc.io/quote"
@@ -13,7 +12,7 @@ func main() {
 	//log.SetFlags(0)
 
 	// built-in package
-	fmt.Println(quote.Go())
+	log.Println(quote.Go())
 
 	// input
 	names := []string{"Kaio", "Maty", "Sokka"}
@@ -25,5 +24,5 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(message)
+	log.Println(message)
 }
