@@ -1,19 +1,19 @@
 package tutorial
 
 import (
-	"fmt"
+	"log"
 )
 
 func variables() {
 	// one after one
 	var firstName string // set as ""
 	var lastName string  // set as ""
-	var age int          // set as 0
+	var age int          // set as 0, 64 bits wide on 64 bits systems, 32-bit wide on 32 bits systems
 	var weight float32   // set as 0.0
 	var boy bool         // set as False
 	var blood rune       // rune is the 'Char' type, equivalent to int32, set as '' by default
 	var bloodBis byte    // byte is also the 'Char' type, equivalent to uint8, set as '' by default
-	fmt.Printf("firstName: %s, lastName: %s, age: %d, weight: %f, boy: %t, blood group: %d, blood group: %d\n",
+	log.Printf("firstName: %s, lastName: %s, age: %d, weight: %f, boy: %t, blood group: %d, blood group: %d\n",
 		firstName, lastName, age, weight, boy, blood, bloodBis)
 
 	// all at once
@@ -23,7 +23,7 @@ func variables() {
 		ageBis       int
 		boyBis       bool
 	)
-	fmt.Printf("firstName: %s, lastName: %s, age: %d, gender: %t\n", FirstNameBis, LastNameBis, ageBis, boyBis)
+	log.Printf("firstName: %s, lastName: %s, age: %d, gender: %t\n", FirstNameBis, LastNameBis, ageBis, boyBis)
 
 	// Type inference
 	firstName2 := "Sam Sagace" // string type
@@ -32,7 +32,7 @@ func variables() {
 	weight2 := 70.0            // .x, so it is a float32
 	boy2 := true               // bool type
 	blood2 := 'O'              // rune type
-	fmt.Printf("firstName: %s, lastName: %s, age: %d, weight: %f, gender: %t, blood group: %d\n",
+	log.Printf("firstName: %s, lastName: %s, age: %d, weight: %f, gender: %t, blood group: %d\n",
 		firstName2, lastName2, age2, weight2, boy2, blood2)
 
 	// constants
