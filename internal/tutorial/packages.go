@@ -2,7 +2,7 @@ package tutorial
 
 import (
 	// Built-in packages have import names and may have nested packages
-	"fmt"
+	"log"
 	"math/big"
 	// Local packages have import paths relative to the module's path (root of the go.mod file)
 	"golang_starter/pkg/tutorial"
@@ -15,9 +15,9 @@ import (
 
 func packages() {
 	// built-in
-	fmt.Printf("packages tutorial")
+	log.Printf("packages tutorial")
 	ten := big.NewInt(10)
-	fmt.Printf("int64: %d", ten)
+	log.Printf("int64: %d", ten)
 
 	// local
 	// this function is Visible outside the 'tutorial' package because its name starts with an uppercase
@@ -30,5 +30,5 @@ func packages() {
 	tutorial.GetRandomNumber(10)
 
 	// third-party
-	fmt.Println(quote.Go())
+	log.Println(quote.Go())
 }

@@ -2,7 +2,7 @@ package tutorial
 
 import (
 	"errors"
-	"fmt"
+	"log"
 )
 
 func functions() {
@@ -11,7 +11,7 @@ func functions() {
 
 	// return
 	average := average(11, 16)
-	fmt.Printf("Average of 11 & 16 is: %f\n", average)
+	log.Printf("Average of 11 & 16 is: %f\n", average)
 
 	// shorter function definitions
 	person("Frodo", "Baggins", 33) // see the shorter function definition
@@ -20,27 +20,27 @@ func functions() {
 	var oldPrice float32 = 12.50
 	var newPrice float32 = 22.75
 	difference, percentage := getPriceChange(oldPrice, newPrice)
-	fmt.Printf("From %f to %f, the price changed by %f which represents %d%",
+	log.Printf("From %f to %f, the price changed by %f which represents %d%",
 		oldPrice, newPrice, difference, percentage)
 
 	// raise error
 	_, shouldBeError := divide(10, 0)
-	fmt.Println("Result is an error: ", shouldBeError)
+	log.Println("Result is an error: ", shouldBeError)
 
 	// named return
 	defaultResult, changedResult := namedReturn()
-	fmt.Println("Default result should be 0: ", defaultResult)
-	fmt.Println("Changed result should be 10: ", changedResult)
+	log.Println("Default result should be 0: ", defaultResult)
+	log.Println("Changed result should be 10: ", changedResult)
 
 	// blank return
 	isZero, _ := namedReturn()
 	_, isTen := namedReturn()
-	fmt.Println("Result should be 0: ", isZero)
-	fmt.Println("Result should be 10: ", isTen)
+	log.Println("Result should be 0: ", isZero)
+	log.Println("Result should be 10: ", isTen)
 }
 
 func say(s string) {
-	fmt.Printf("%s", s)
+	log.Printf("%s", s)
 }
 
 func average(x float32, y float32) float32 {
@@ -49,7 +49,7 @@ func average(x float32, y float32) float32 {
 
 // same but shorter
 func person(firstName, lastName string, age int) {
-	fmt.Printf("Hi, I am %s %s and I am %d years old.", firstName, lastName, age)
+	log.Printf("Hi, I am %s %s and I am %d years old.", firstName, lastName, age)
 }
 
 func getPriceChange(oldPrice, newPrice float32) (float32, int) {

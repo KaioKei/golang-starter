@@ -1,6 +1,6 @@
 package tutorial
 
-import "fmt"
+import "log"
 
 // A Slice is a segment of an array.
 // Slices build on arrays and provide more power, flexibility, and convenience compared to arrays.
@@ -24,7 +24,7 @@ func slice() {
 	var s1 []int
 	s1 = []int{1, 2, 3, 4, 5}
 	s2 := []string{"hello", "world"}
-	fmt.Printf("s1: %v, s2: %v", s1, s2)
+	log.Printf("s1: %v, s2: %v", s1, s2)
 
 	// Since a slice is a segment of an array, we can create a slice from an array.
 	indexLow := 1
@@ -40,11 +40,11 @@ func slice() {
 	s6 := s1[:] // = {1, 2, 3, 4, 5}
 	// a slice from another slice (since they are arrays)
 	s7 := s5[indexLow:indexHigh] // = {3, 4}
-	fmt.Print(s3)
-	fmt.Print(s4)
-	fmt.Print(s5)
-	fmt.Print(s6)
-	fmt.Print(s7)
+	log.Print(s3)
+	log.Print(s4)
+	log.Print(s5)
+	log.Print(s6)
+	log.Print(s7)
 
 	// len and capacity
 	// the length of the slice is the number of elements in the slice while the capacity is the number of elements in
@@ -52,8 +52,8 @@ func slice() {
 	// to the last element of the ARRAY.
 	a := [6]int{1, 2, 3, 4, 5, 6}
 	s := a[1:4]       // = {2, 3, 4}
-	fmt.Print(len(s)) // = 3
-	fmt.Print(cap(s)) // = 5, from the start of the slice (included) to the end of the array
+	log.Print(len(s)) // = 3
+	log.Print(cap(s)) // = 5, from the start of the slice (included) to the end of the array
 
 	// The make() function takes a type, a length, and an optional capacity.
 	// Following is the signature of make() function - func make([]T, len, cap) []T
@@ -63,8 +63,8 @@ func slice() {
 	s8 := make([]int, 5)
 	// Creates an array of size 10, slices it till index 5, and returns the slice reference:
 	s9 := make([]int, 5, 10)
-	fmt.Printf("slice: %v, len: %d, cap: %d", s8, len(s8), cap(s8))
-	fmt.Printf("slice: %v, len: %d, cap: %d", s9, len(s9), cap(s9))
+	log.Printf("slice: %v, len: %d, cap: %d", s8, len(s8), cap(s8))
+	log.Printf("slice: %v, len: %d, cap: %d", s9, len(s9), cap(s9))
 
 	// The copy() function copies elements from one slice to another
 	// Its signature looks like this - func copy(dst, src []T) int
@@ -75,9 +75,9 @@ func slice() {
 	src := []string{"Sublime", "VSCode", "IntelliJ", "Eclipse"}
 	dest := make([]string, 2)
 	numElementsCopied := copy(dest, src)
-	fmt.Println("src = ", src)
-	fmt.Println("dest = ", dest) // = {"Sublime", "VSCode"} so 2 elements are copied = min(dest, src)
-	fmt.Println("Number of elements copied from src to dest = ", numElementsCopied)
+	log.Println("src = ", src)
+	log.Println("dest = ", dest) // = {"Sublime", "VSCode"} so 2 elements are copied = min(dest, src)
+	log.Println("Number of elements copied from src to dest = ", numElementsCopied)
 
 	// The append() function appends new elements at the end of a given slice.
 	// Following is the signature of append function - func append(s []T, x ...T) []T
@@ -96,24 +96,24 @@ func slice() {
 	slice1 := []string{"C", "C++", "Java"}           // len = 3; cap = 3
 	slice2 := append(slice1, "Python", "Ruby", "Go") // len = 6; cap = 6 with new underlying array
 	slice2[2] = "Rust"                               // does not affect slice1 since the underlying array is not the same
-	fmt.Print(slice1)
-	fmt.Print(slice2)
+	log.Print(slice1)
+	log.Print(slice2)
 
 	slice3 := make([]string, 3, 10) // len = 3; cap = 10
 	copy(slice3, []string{"C", "C++", "Java"})
 	slice4 := append(slice3, "Python", "Ruby", "Go") // len = 6; cap = 10 with the same underlying array
 	slice4[2] = "Rust"                               // affects slice3 since the underlying array is the same
-	fmt.Print(slice1)
-	fmt.Print(slice2)
+	log.Print(slice1)
+	log.Print(slice2)
 
 	var s10 []string
 	s10 = append(s10, "Cat", "Dog", "Lion", "Tiger")              // Appending to a nil slice
-	fmt.Printf("s = %v, len = %d, cap = %d\n", s, len(s), cap(s)) // len = 4; cap = 4
+	log.Printf("s = %v, len = %d, cap = %d\n", s, len(s), cap(s)) // len = 4; cap = 4
 
 	slice5 := []string{"Jack", "John", "Peter"}
 	slice6 := []string{"Bill", "Mark", "Steve"}
 	slice7 := append(slice5, slice6...) // append 2 slices
-	fmt.Print(slice7)
+	log.Print(slice7)
 
 	// Slice of slices
 	slice8 := [][]string{
@@ -121,12 +121,12 @@ func slice() {
 		{"Legolas", "Galadriel"},
 		{"Gimli"},
 	}
-	fmt.Print(slice8)
+	log.Print(slice8)
 
 	// iterations over slices
 	// equals iterating over arrays
 	primeNumbers := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
 	for index, value := range primeNumbers {
-		fmt.Printf("The prime number n%d is: %d", index, value)
+		log.Printf("The prime number n%d is: %d", index, value)
 	}
 }

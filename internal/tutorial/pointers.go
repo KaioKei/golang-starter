@@ -1,6 +1,6 @@
 package tutorial
 
-import "fmt"
+import "log"
 
 // A variable is composed with a memory address and a value.
 // A pointer is a variable that stores the memory address of another variable as its value.
@@ -16,16 +16,16 @@ func pointers() {
 	var p1 = &a1  // *int means p can only store the address of integers
 	var p2 *int   // zero value of a pointer is nil but has an address as a variable
 	p3 := &a1     // compact version, p1 != p3 but value p1 = value p3
-	fmt.Print(p1) // Print the address of a1
-	fmt.Print(p2) // nil
-	fmt.Print(p3) // p3, print the same as p1
+	log.Print(p1) // Print the address of a1
+	log.Print(p2) // nil
+	log.Print(p3) // p3, print the same as p1
 
 	// Dereferencing (or inderecting)
 	// These terms mean 'accessing the value stored in the variable that the pointer points to'
-	fmt.Print(*p1) // equals the value of a1
-	fmt.Print(*p3) // also equals to the value of a1
+	log.Print(*p1) // equals the value of a1
+	log.Print(*p3) // also equals to the value of a1
 	*p1 = 100      // changes the value of a1
-	fmt.Print(a1)  // = 100
+	log.Print(a1)  // = 100
 
 	// the 'new()' function creates a pointer
 	p4 := new(int) // pointer to int types
@@ -33,14 +33,14 @@ func pointers() {
 
 	// pointer to pointer
 	pp1 := &p1       // pointer that points to the pointer p1
-	fmt.Print(pp1)   // print address of p1
-	fmt.Print(*pp1)  // value of p1, so address of a1
-	fmt.Print(**pp1) // = a1
+	log.Print(pp1)   // print address of p1
+	log.Print(*pp1)  // value of p1, so address of a1
+	log.Print(**pp1) // = a1
 
 	// does not support arithmetic operations :
 	//var p5 = p4 + 1 will throw an error
 
 	// comparison
 	b1 := p1 == p3 // is true
-	fmt.Print(b1)
+	log.Print(b1)
 }

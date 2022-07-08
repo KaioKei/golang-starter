@@ -1,6 +1,6 @@
 package tutorial
 
-import "fmt"
+import "log"
 
 // A map is an unordered collection of key-value pairs.
 // The keys are unique within a map while the values may not be.
@@ -14,20 +14,20 @@ import "fmt"
 func maps() {
 	// Syntax is var m map[<keyType>]<valueType>
 	var m1 map[string]int
-	fmt.Print(m1) // is nil
+	log.Print(m1) // is nil
 
 	// Initialize an empty map
 	// make() function returns an initialized and ready to use map
 	var m2 = make(map[string]int) // is NOT nil but empty
 	m2["one hundred"] = 100
 	var m3 = map[string]int{} // equivalent to make() usage
-	fmt.Print(m2)
-	fmt.Print(m3)
+	log.Print(m2)
+	log.Print(m3)
 
 	// Oneline initialization with values
 	// Do not use make() but instantiate it with values
 	var m4 = map[string]int{"one": 1, "two": 2, "three": 3}
-	fmt.Print(m4)
+	log.Print(m4)
 
 	// Add values
 	m4["four"] = 4 // m4 = {"one": 1, "two": 2, "three": 3, "four": 4}
@@ -40,39 +40,39 @@ func maps() {
 	// so for an int, we get 0. For a string, we get ""
 	var v1 int = m4["one"] // = 1 (int)
 	nil1 := m4["hundred"]  // = 0
-	fmt.Print(v1)
-	fmt.Print(nil1) // print 0
+	log.Print(v1)
+	log.Print(nil1) // print 0
 
 	// Check values existence
 	// Same as get values, but also returns a boolean to know if the value exists
 	v2, isPresent2 := m4["one"]     // v2 = 1, isPresent2 = true
 	v3, isPresent3 := m4["hundrer"] // v3 = 0, isPresent3 = false
 	_, isPresent := m4["thousand"]  // only check the presence of the value
-	fmt.Printf("value 'one' is present: %t; its value is: %d", isPresent2, v2)
-	fmt.Printf("value 'hundred' is present: %t; its value is: %d", isPresent3, v3)
-	fmt.Printf("value 'thousand' is present: %t", isPresent)
+	log.Printf("value 'one' is present: %t; its value is: %d", isPresent2, v2)
+	log.Printf("value 'hundred' is present: %t; its value is: %d", isPresent3, v3)
+	log.Printf("value 'thousand' is present: %t", isPresent)
 
 	// Delete values
 	// use delete() function
 	// Syntax is delete(<map>, <Key>)
 	delete(m4, "four") // delete 'four' entry
-	fmt.Print(m4)      // m4 = {"one": 1, "two": 2, "three": 3}
+	log.Print(m4)      // m4 = {"one": 1, "two": 2, "three": 3}
 
 	// References
 	// Maps are reference types
 	// Any change to a map will spread across the maps instanced from the former.
 	m5 := m4 // same: m4 = {"one": 1, "two": 2, "three": 3} & m5 = {"one": 1, "two": 2, "three": 3}
 	m5["four"] = 4
-	fmt.Print(m4) // m4 has been modified through m5 : m4 = {"one": 1, "two": 2, "three": 3}
+	log.Print(m4) // m4 has been modified through m5 : m4 = {"one": 1, "two": 2, "three": 3}
 
 	// Iterating over a map
 	// ! WARNING: A map is unordered, so iterate over a map do not guarantee the order of key-values for every iteration
 	for numberName, numberValue := range m4 {
-		fmt.Printf("%s = %d", numberName, numberValue)
+		log.Printf("%s = %d", numberName, numberValue)
 	}
 	// the iteration order might not be the same this time :
 	for numberName, numberValue := range m4 {
-		fmt.Printf("%s = %d", numberName, numberValue)
+		log.Printf("%s = %d", numberName, numberValue)
 	}
 
 }
