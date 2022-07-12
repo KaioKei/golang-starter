@@ -18,7 +18,7 @@ import "log"
 // of the array).
 // Any attempt to extend a slice length beyond the available capacity will result in a runtime error.
 
-func slice() {
+func Slices() {
 	// initialization
 	// like an array but without anything inside the brackets
 	var s1 []int

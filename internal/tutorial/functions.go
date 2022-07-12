@@ -5,9 +5,9 @@ import (
 	"log"
 )
 
-func functions() {
+func Functions() {
 	// no return
-	say("Functions tutorial")
+	Say("Functions tutorial")
 
 	// return
 	average := average(11, 16)
@@ -39,10 +39,12 @@ func functions() {
 	log.Println("Result should be 10: ", isTen)
 }
 
-func say(s string) {
+// Say accessible outside this package due to the upper case 'S'
+func Say(s string) {
 	log.Printf("%s", s)
 }
 
+// average not accessible outside this package due to the lower case 'a'
 func average(x float32, y float32) float32 {
 	return (x + y) / 2
 }

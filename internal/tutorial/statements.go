@@ -4,7 +4,7 @@ import (
 	"log"
 )
 
-func statements() {
+func Statements() {
 	log.Printf("Golang statements")
 	ifStatement()
 	switchStatement()
@@ -97,7 +97,7 @@ func forStatement() {
 	//	// loop body
 	//}
 
-	// short statement
+	//short statement
 	for i := 0; i < 10; i++ {
 		log.Printf("%d\n", i)
 	}
@@ -112,9 +112,10 @@ func forStatement() {
 	i = 0
 	for i < 10 {
 		log.Printf("%d\n", i)
+		break
 	}
 
-	// while loop
+	//while loop
 	condition := true
 	j := 0
 	for condition {

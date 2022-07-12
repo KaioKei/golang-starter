@@ -95,6 +95,9 @@ func Structures() {
 	p8 := Person{"Frodo", "Baggins", 33}
 	log.Print(p2 == p7) // false
 	log.Print(p2 == p8) // true
+
+	// Print a structure
+	log.Printf("%v", p8)
 }
 
 func setAgeToHundred(frodo Person) Person {

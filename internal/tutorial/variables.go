@@ -4,7 +4,7 @@ import (
 	"log"
 )
 
-func variables() {
+func Variables() {
 	// one after one
 	var firstName string // set as ""
 	var lastName string  // set as ""

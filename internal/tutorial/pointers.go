@@ -2,13 +2,14 @@ package tutorial
 
 import "log"
 
+// Pointers
 // A variable is composed with a memory address and a value.
 // A pointer is a variable that stores the memory address of another variable as its value.
 // Dereferencing a pointer means accessing the value stored in the variable that the pointer points to.
 // You can instantiate a pointer to pointer.
 // The arithemtic operators do not work with pointer like +, >, etc ...
 // But you can compare two pointers with ==
-func pointers() {
+func Pointers() {
 	// first example
 	// the variable a stores the value 10 at an address like 0x0001
 	// the pointer p stores the value 0x0001 (address of a) at another address
@@ -43,4 +44,14 @@ func pointers() {
 	// comparison
 	b1 := p1 == p3 // is true
 	log.Print(b1)
+
+	// using function
+	log.Printf("Before modification: %d", *p4)
+	modify(p4, 1000)
+	log.Printf("After modification: %d", *p4)
+}
+
+// function with a pointer as paramter
+func modify(integerPointer *int, newValue int) {
+	*integerPointer = newValue
 }

@@ -2,6 +2,7 @@ package tutorial
 
 import "log"
 
+// Maps
 // A map is an unordered collection of key-value pairs.
 // The keys are unique within a map while the values may not be.
 // By default, a map is nil.
@@ -11,7 +12,7 @@ import "log"
 // The same concept applies when you pass a map to a function. Any changes done to the map inside the function is also
 // visible to the caller.
 // ! WARNING: A map is unordered, so iterate over a map do not guarantee the order of key-values for every iteration
-func maps() {
+func Maps() {
 	// Syntax is var m map[<keyType>]<valueType>
 	var m1 map[string]int
 	log.Print(m1) // is nil

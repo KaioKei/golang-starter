@@ -13,7 +13,7 @@ import (
 	"rsc.io/quote"
 )
 
-func packages() {
+func Packages() {
 	// built-in
 	log.Printf("packages tutorial")
 	ten := big.NewInt(10)

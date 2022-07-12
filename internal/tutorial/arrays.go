@@ -2,7 +2,7 @@ package tutorial
 
 import "log"
 
-func array() {
+func Arrays() {
 	// array of 10 integers called 'a' (zeros)
 	var a [10]int
 	lastInt := a[len(a)-1]
