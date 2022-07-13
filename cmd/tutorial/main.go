@@ -27,4 +27,5 @@ func main() {
 	log.Print(s1)
 
 	tutorial.Methods()
+	tutorial.Interfaces()
 }

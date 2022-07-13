@@ -35,6 +35,9 @@ func Variables() {
 	log.Printf("firstName: %s, lastName: %s, age: %d, weight: %f, gender: %t, blood group: %d\n",
 		firstName2, lastName2, age2, weight2, boy2, blood2)
 
+	// print value and type of a variable
+	log.Printf("{%f, %T}", weight2, weight2)
+
 	// constants
 	// in Go, const are untyped by default
 	const untyped1 = 1
