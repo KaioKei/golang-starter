@@ -40,6 +40,7 @@ func Variables() {
 
 	// constants
 	// in Go, const are untyped by default
+	// It is a bad practice to let them as-is
 	const untyped1 = 1
 	const untyped2 = "not any type"
 	const untyped3 = false

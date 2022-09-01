@@ -4,16 +4,15 @@ import (
 	"log"
 )
 
-// Person : A struct is a user-defined type that contains a collection of named fields/properties.
+// Person : A struct is a defined type that contains a collection of named fields/properties.
 // You can think of a struct as a lightweight class that supports composition but not inheritance.
 // A struct is instantiated with the 'type' keyword which introduces a new type.
 // A struct is composed with 'fields' whose are other types.
 // Before instantiating a struct, you MUST define the struct.
-// Structs are value types.
-// When you assign one struct variable to another, a new copy of the struct is created and assigned.
+// Structs are value types i.e. when you assign one struct variable to another, a new copy of the struct is created and
+// assigned.
 // Similarly, when you pass a struct to another function, the function gets its own copy of the struct.
-// struct definition
-// syntax is 'type <structure name> struct{}'
+// struct definition syntax is 'type <structure name> struct{}'.
 // Due to the capital letter 'P', the following structure is accessible outside this package
 // Due to the capital letters, the fields are accessible outside this structure
 type Person struct {
