@@ -12,6 +12,32 @@ git clone https://gitlab.com/MrCachou/golang_starter
 
 Use goenv locally with this project.
 
+## Init project
+
+```sh
+mkdir myproject && cd myproject
+goenv local 1.19.0
+go mod init myproject
+tree -a
+.
+├── go.mod
+└── .go-version
+```
+
+## Project architecture
+
+```sh
+tree -a -L 1 
+.
+├── cmd
+├── go.mod
+├── .go-version
+├── internal
+├── pkg
+├── README.md
+└── test
+```
+
 ## Test
 
 ```sh

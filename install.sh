@@ -8,9 +8,9 @@ BIN_DIR="${PROJECT_DIR}/bin"
 mkdir -p "${BIN_DIR}"
 
 # add your commands here
-commands=( "hello" )
+commands=( "hello" "shellcli/cobra" )
 for cmd in ${commands[*]}; do
     (cd "${CMD_DIR}/${cmd}" || exit; go build)
-    mv "${CMD_DIR}/${cmd}/${cmd}" "${BIN_DIR}"
-    echo "${BIN_DIR}/${cmd}"
+    mv "${CMD_DIR}/${cmd}/$(basename "${cmd}")" "${BIN_DIR}"
+    echo "${BIN_DIR}/$(basename "${cmd}")"
 done
