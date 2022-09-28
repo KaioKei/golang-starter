@@ -37,6 +37,9 @@ func Functions() {
 	_, isTen := namedReturn()
 	log.Println("Result should be 0: ", isZero)
 	log.Println("Result should be 10: ", isTen)
+
+	// say 'world' when the function has returned its result (here, return nil)
+	deferHelloWorld()
 }
 
 // Say accessible outside this package due to the upper case 'S'
@@ -77,4 +80,13 @@ func namedReturn() (resultByDefault, resultChanged int) {
 	//   - 'resultByDefault=0' since it as an int and we have not modified it
 	//   - 'resultChanged=10' since we modified it
 	return
+}
+
+func deferHelloWorld() {
+	//  A defer statement defers the execution of a function until the surrounding function returns.
+	// The deferred call's arguments are evaluated immediately, but the function call is not executed
+	// until the surrounding function returns.
+	defer log.Println("world !")
+
+	log.Println("hello")
 }
