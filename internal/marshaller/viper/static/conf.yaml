@@ -1,0 +1,8 @@
+version: 0.0.1
+people:
+  - firstname: Frodo
+    lastname: Baggins
+    age: 33
+    other:
+      sword: sting
+      origin: shire

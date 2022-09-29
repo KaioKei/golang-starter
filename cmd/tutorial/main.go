@@ -20,12 +20,13 @@ func main() {
 	tutorial.Pointers()
 
 	// structures
-	//tutorial.Structures()
+	tutorial.Structures()
 	//tutorial.confidential cannot be accessed
 	//tutorial.Public{packageSecret: "secret"} raises an error
 	s1 := tutorial.Public{PackagePublic: "public"} // is ok
 	log.Print(s1)
 
-	//tutorial.Methods()
-	//tutorial.Interfaces()
+	tutorial.Methods()
+	tutorial.Interfaces()
+	tutorial.Files()
 }

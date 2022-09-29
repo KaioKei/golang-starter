@@ -18,6 +18,13 @@ Intermediate tutorials : https://github.com/callicoder/golang-tutorials
 * ORM :
   * Gorm
 
+## Add a new module
+
+```sh
+go get <module import>
+go mod tidy
+```
+
 ## TODO
 
 
