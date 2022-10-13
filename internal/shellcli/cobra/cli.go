@@ -3,6 +3,7 @@ package cobra
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"log"
 	"os"
 )
 
@@ -27,9 +28,16 @@ var rootCmd = &cobra.Command{
 	},
 }
 
-// cliInit used to initialize flags and command
+func hello() {
+	log.Println("Hello before all !")
+}
+
+// used to initialize flags and command
 // define the cli architecture here
-func cliInit() {
+func init() {
+	// can execute functions on cli init
+	cobra.OnInitialize(hello)
+
 	// subcommands
 	rootCmd.AddCommand(createCmd)
 	createCmd.AddCommand(createFileCmd, createDirCmd)
@@ -53,7 +61,6 @@ func cliInit() {
 // Execute is the entry point of the cli
 // You can call it from external packages
 func Execute() {
-	cliInit()
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

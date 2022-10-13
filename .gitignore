@@ -27,6 +27,7 @@ _testmain.go
 *.iml
 bin
 gorm.db
+Dockerfile*
 
 # commands
 cmd/hello/hello
