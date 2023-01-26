@@ -25,7 +25,7 @@ type Person struct {
 // due to the lowercase letter, 'packageSecret' is not accessible outside this package
 // due to the lowercase letter, 'packageSecret' is not accessible outside the package
 // even with the capital letter, 'AlsoPackageSecret' is not accessible outside the package due to the lowercase of the
-//struc definition name
+// struc definition name
 type private struct {
 	packageSecret     string
 	AlsoPackageSecret string
@@ -37,6 +37,17 @@ type private struct {
 type Public struct {
 	packageSecret string
 	PackagePublic string
+}
+
+// Struct tags such as `json:"artist"` specify what a field’s name should be when the struct’s contents
+// are serialized into JSON. Without them, the JSON would use the struct’s capitalized field names – a
+// style not as common in JSON.
+// album represents data about a record album.
+type album struct {
+	ID     string  `json:"id"`
+	Title  string  `json:"title"`
+	Artist string  `json:"artist"`
+	Price  float64 `json:"price"`
 }
 
 func Structures() {
@@ -97,6 +108,14 @@ func Structures() {
 
 	// Print a structure
 	log.Printf("%v", p8)
+
+	// albums slice to seed record album data.
+	var albums = []album{
+		{ID: "1", Title: "Blue Train", Artist: "John Coltrane", Price: 56.99},
+		{ID: "2", Title: "Jeru", Artist: "Gerry Mulligan", Price: 17.99},
+		{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
+	}
+	log.Printf("%v", albums)
 }
 
 func setAgeToHundred(frodo Person) Person {

@@ -2,6 +2,7 @@ package tutorial
 
 import (
 	"log"
+	"strconv"
 )
 
 func Variables() {
@@ -51,4 +52,13 @@ func Variables() {
 	const typedInteger = currentMajorVersion // this var is typed since it is instantiated from an int
 	// cannot be changed
 	// favoriteLanguage = "Python" // will provoke compiler error
+
+	// convert types
+	intstr := "321"
+	myint, err := strconv.Atoi(intstr)
+	if err != nil {
+		log.Println("Error during conversion")
+		return
+	}
+	log.Println(myint)
 }

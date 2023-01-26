@@ -2,10 +2,10 @@
 
 ## Sources
 
-Common standard : https://github.com/golang-standards/project-layout
-Best Practices : https://github.com/golang/go/wiki/CodeReviewComments
-Official tutorials : https://pkg.go.dev/cmd/go
-Intermediate tutorials : https://github.com/callicoder/golang-tutorials
+- [Project layout standards](https://github.com/golang-standards/project-layout)
+- [Best Practices](https://github.com/golang/go/wiki/CodeReviewComments)
+- [Official tutorials](https://pkg.go.dev/cmd/go)
+- [Intermediate tutorials](https://github.com/callicoder/golang-tutorials)
 
 ## Libs
 
@@ -17,12 +17,25 @@ Intermediate tutorials : https://github.com/callicoder/golang-tutorials
   * Viper
 * ORM :
   * Gorm
+* API :
+  * REST :
+    * Gin
+
+## Install commands
+
+```sh
+./install.sh
+```
 
 ## Add a new module
 
 ```sh
+# import
 go get <module import>
+# synchronize code's dependencies
 go mod tidy
+# if vendors
+go mod vendors
 ```
 
 ## Remote debug
@@ -33,6 +46,8 @@ Install Delve :
 
 ```sh
 go install github.com/go-delve/delve/cmd/dlv@latest
+# before 1.18 :
+go get github.com/go-delve/delve/cmd/dlv@latest
 ```
 
 Build or install your app with debug flags :

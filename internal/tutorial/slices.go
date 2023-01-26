@@ -129,4 +129,45 @@ func Slices() {
 	for index, value := range primeNumbers {
 		log.Printf("The prime number n%d is: %d", index, value)
 	}
+
+	// item deletion
+	// these classic methods used here to delete elements in slices modifies the original slice by
+	// replacing it by shift to the left, and return a new slice without the element
+	// to get a real slice without modifying the original one, you have to copy it
+	log.Println("Animals", s10)
+	s11 := removeSlowByIndex(s10, 2)
+	log.Println("Removed the third animal: ", s11)
+	log.Println("But the original slice is modified by shifting: ", s10)
+	s12 := removeFastByIndex(s11, 2)
+	log.Println("Again removed the third animal: ", s12)
+	s13 := removeString(s12, "Dog")
+	log.Println("Removed the Dog: ", s13)
+}
+
+// removeSlowByIndex removes an element based on its position in the slice
+// keeps slice ordering
+// modifies the original slice
+func removeSlowByIndex(slice []string, s int) []string {
+	// shift all the elements at the right of the deleting index by one to the left
+	// may end up with moving all the elements, which is costly
+	// but keeps slice order
+	return append(slice[:s], slice[s+1:]...)
+}
+
+// removeFastByIndex removes an element based on its position in the slice
+// does not keep slice ordering
+func removeFastByIndex(slice []string, i int) []string {
+	// does not perform bounds-checking. It expects a valid index as input. This means that negative
+	// values or indices that are greater or equal to the initial len(s) will cause Go to panic
+	slice[i] = slice[len(slice)-1]
+	return slice[:len(slice)-1]
+}
+
+func removeString(slice []string, value string) []string {
+	for i := range slice {
+		if slice[i] == value {
+			return removeSlowByIndex(slice, i)
+		}
+	}
+	return slice
 }
