@@ -27,6 +27,13 @@
 ./install.sh
 ```
 
+## Init a module
+
+```sh
+# will create a go.mod file in ./
+go mod init my_module_name
+```
+
 ## Add a new module
 
 ```sh
@@ -36,6 +43,15 @@ go get <module import>
 go mod tidy
 # if vendors
 go mod vendors
+```
+
+## Build Manually
+
+```sh
+# example for hello command
+cd cmd/hello
+go build
+./hello
 ```
 
 ## Remote debug

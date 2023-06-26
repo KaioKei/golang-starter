@@ -1,3 +1,5 @@
+# TRY FROM OPENAPI UI WILL NOT WORK SINCE CORS IS NOT SUPPORTED BY
+# THIS TUTORIAL
 openapi: 3.0.3
 info:
   title: GinTuto
@@ -6,20 +8,108 @@ info:
 servers:
   - url: 'http://localhost:8080'
 paths:
-  /images:
+  /albums:
     get:
-      description: Get a list of images as JSON
+      description: List of albums
       responses:
         '200':
-          description: Get the list of images as JSON
+          description: List of albums
+          content:
+            application/json:
+              schema:
+                type: array
+                example:
+                  - id: 1
+                    title: "Blue Train"
+                    artist: "John Coltrane"
+                    price:  56.99
     post:
-      description: Create a new image
+      description: Create an album
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  type: string
+                  example: "Discovery"
+                artist:
+                  type: string
+                  example: "Daft Punk"
+                price:
+                  type: integer
+                  example: 9.99
       responses:
         '201':
-          description: Image created
-  /images/{id}:
+          description: Album created
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 4
+                  title: "Discovery"
+                  artist: "Daft Punk"
+                  price:  9.99
+
+  /albums/{id}:
     get:
-      description: Download an image with its ID
+      description: Download an album with its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2
       responses:
         '200':
           description: Download successful
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 2
+                  title: "Jeru"
+                  artist: "Gerry Mulligan"
+                  price: 17.99
+        '404':
+          description: Album not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    example:
+                      message: "album not found"
+                      id: 2
+    delete:
+      description: Delete an album
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2
+      responses:
+        '200':
+          description: Album deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "album deleted"
+                  id:
+                    type: string
+                    example: 2

@@ -1,0 +1,62 @@
+// 'message' defines a data structure which is a logical record with key-value pairs.
+// This message is then compiled with a protocol buffer compiler, like 'protoc'.
+// The compiler will generate a client and a server code for the data access for this message in
+// the dedicated language (java, go, etc ...).
+// These access are accessors (thanks captain obvious) like classes, getters and setters.
+// - On the server side, the server implements the methods declared by the service and runs a gRPC server
+//   to handle client calls. The gRPC infrastructure decodes incoming requests, executes service methods,
+//   and encodes service responses.
+// - On the client side, the client has a local object known as stub (for some languages, the preferred
+//   term is client) that implements the same methods as the service. The client can then just call
+//   those methods on the local object, and the methods wrap the parameters for the call in the
+//   appropriate protocol buffer message type, send the requests to the server, and return the server’s
+//   protocol buffer responses.
+
+// protocol version, defining the syntax
+syntax = "proto3";
+
+// The greeter service definition.
+// This is a unary rpc method where the client sends a single request to the server and gets a single
+// response back, just like a normal function call
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// This is a Server Streaming rpc method where the client sends a request to the server and gets a
+// stream to read a sequence of messages back.
+// The client reads from the returned stream until there are no more messages.
+// gRPC guarantees message ordering within an individual RPC call.
+service GreeterServerStream {
+  rpc LotsOfReplies(HelloRequest) returns (stream HelloReply);
+}
+
+// This is a Client Streaming rpc method where the client writes a sequence of messages and sends them
+// to the server, again using a provided stream.
+// Once the client has finished writing the messages, it waits for the server to read them and return
+// its response.
+// Again gRPC guarantees message ordering within an individual RPC call.
+service GreeterClientStream {
+  rpc LotsOfGreetings(stream HelloRequest) returns (HelloReply);
+}
+
+// This is a Bidirectional Streaming rpc method where both sides send a sequence of messages using a
+// read-write stream.
+// The two streams operate independently, so clients and servers can read and write in whatever order
+// they like:
+// for example, the server could wait to receive all the client messages before writing its
+// responses, or it could alternately read a message then write a message, or some other combination of
+// reads and writes. The order of messages in each stream is preserved.
+service GreeterBidirectionalStreamn {
+  rpc BidiHello(stream HelloRequest) returns (stream HelloReply);
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
