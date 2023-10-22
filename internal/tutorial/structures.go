@@ -9,12 +9,17 @@ import (
 // A struct is instantiated with the 'type' keyword which introduces a new type.
 // A struct is composed with 'fields' whose are other types.
 // Before instantiating a struct, you MUST define the struct.
-// Structs are value types i.e. when you assign one struct variable to another, a new copy of the struct is created and
-// assigned.
+// Structs are value types i.e. when you assign one struct variable to another, a new copy of the struct
+// is created and assigned.
 // Similarly, when you pass a struct to another function, the function gets its own copy of the struct.
 // struct definition syntax is 'type <structure name> struct{}'.
 // Due to the capital letter 'P', the following structure is accessible outside this package
 // Due to the capital letters, the fields are accessible outside this structure
+// Furthermore, Structures are Values types.
+// So when you call &Person, you actually create a pointer to this structure (dereferencing)
+// When you call *(&Person) is the same as calling Person.
+// Calling a field of a structure's pointer returns the pointer of the field.
+// So &Person.Age is a pointer to the value of Age in the structure Person.
 type Person struct {
 	// the fields are composed with a name and a type
 	FirstName string // zero value
@@ -31,7 +36,7 @@ type private struct {
 	AlsoPackageSecret string
 }
 
-// Public: due to the capital letter, 'Public' is accessible outside this package
+// Public due to the capital letter, 'Public' is accessible outside this package
 // due to the lowercase letter, 'packageSecret' is not accessible outside the package
 // due to the capital letter, 'PackagePublic' is accessible outside the package
 type Public struct {

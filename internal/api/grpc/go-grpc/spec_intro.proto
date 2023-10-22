@@ -1,12 +1,14 @@
+// gRPC can use protocol buffers as both its Interface Definition Language (IDL) and as its underlying
+// 'message' interchange format.
 // 'message' defines a data structure which is a logical record with key-value pairs.
-// This message is then compiled with a protocol buffer compiler, like 'protoc'.
-// The compiler will generate a client and a server code for the data access for this message in
-// the dedicated language (java, go, etc ...).
-// These access are accessors (thanks captain obvious) like classes, getters and setters.
-// - On the server side, the server implements the methods declared by the service and runs a gRPC server
-//   to handle client calls. The gRPC infrastructure decodes incoming requests, executes service methods,
-//   and encodes service responses.
-// - On the client side, the client has a local object known as stub (for some languages, the preferred
+// This message must be compiled with a protocol buffer compiler, like 'protoc'.
+// The compiler will generate a client and a server code for the data access for compiled messages in
+// dedicated languages (java, go, etc ...).
+// These access are accessors like classes, getters and setters.
+// - On the server side, the compilation will implements the methods declared by the service and runs a
+//   gRPC server to handle client calls. The gRPC infrastructure decodes incoming requests, executes
+//   service methods, and encodes service responses.
+// - On the client side, the compilation has a local object known as stub (for some languages, the preferred
 //   term is client) that implements the same methods as the service. The client can then just call
 //   those methods on the local object, and the methods wrap the parameters for the call in the
 //   appropriate protocol buffer message type, send the requests to the server, and return the server’s
@@ -14,6 +16,16 @@
 
 // protocol version, defining the syntax
 syntax = "proto3";
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
 
 // The greeter service definition.
 // This is a unary rpc method where the client sends a single request to the server and gets a single
@@ -51,12 +63,4 @@ service GreeterBidirectionalStreamn {
   rpc BidiHello(stream HelloRequest) returns (stream HelloReply);
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
-}
 
-// The response message containing the greetings
-message HelloReply {
-  string message = 1;
-}

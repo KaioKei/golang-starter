@@ -29,5 +29,9 @@ bin
 gorm.db
 Dockerfile*
 
-# commands
+# commandsson parsing
 cmd/hello/hello
+internal/api/grpc/go-grpc/grpc-go
+
+# Dependency directories (remove the comment below to include it)
+vendor/

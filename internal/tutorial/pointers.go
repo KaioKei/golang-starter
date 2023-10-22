@@ -5,9 +5,10 @@ import "log"
 // Pointers
 // A variable is composed with a memory address and a value.
 // A pointer is a variable that stores the memory address of another variable as its value.
-// Dereferencing a pointer means accessing the value stored in the variable that the pointer points to.
+// Dereferencing (or inderecting) a pointer means accessing the value stored in the variable that the
+// pointer points to.
 // You can instantiate a pointer to pointer.
-// The arithemtic operators do not work with pointer like +, >, etc ...
+// The arithmetic operators do not work with pointer like +, >, etc ...
 // But you can compare two pointers with ==
 func Pointers() {
 	log.Print("Pointers tutorial")
@@ -19,7 +20,7 @@ func Pointers() {
 	var p2 *int  // zero value of a pointer is nil but has an address as a variable
 	p3 := &a1    // compact version, p1 != p3 but value p1 = value p3
 	log.Printf("Address of a1 using p1: %p", p1)
-	log.Printf("Address of a1 using p1: %p", p3)
+	log.Printf("Address of a1 using p3: %p", p3)
 	log.Printf("Default value of a pointer: %v", p2)
 
 	// Dereferencing (or inderecting)

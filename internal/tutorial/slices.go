@@ -3,19 +3,22 @@ package tutorial
 import "log"
 
 // A Slice is a segment of an array.
-// Slices build on arrays and provide more power, flexibility, and convenience compared to arrays.
-// When you create a slice using a slice literal, it first creates an array and then returns a slice reference to it.
+// Slices are built upon arrays and provide more power, flexibility, and convenience compared to arrays.
+// When you create a slice using a slice literal, it first creates an array and then returns a slice
+// reference to it.
 // A slice consists of three things :
 //    - A pointer (reference) to an underlying array.
 //    - The length of the segment of the array that the slice contains.
 //    - The capacity (the maximum size up to which the segment can grow).
-// So the length of the slice is the number of elements in the slice while the capacity is the number of elements in
-// the underlying array starting from the first element in the slice (since the slice is a sub element of an array).
+// So the length of the slice is the number of elements in the slice while the capacity is the
+// max number of elements the underlying array can contain starting from the FIRST ELEMENT OF THE SLICE
+// (since the slice is a sub element of an array).
 // Example :
 // a := [6]int{1, 2, 3, 4, 5, 6}
 // s := a[1:4]  # start from the first index INCLUDED to the last index EXCLUDED
-// so len(s) = 3 and cap(s) = 5 (from the first element of the slice (= second element of the array) to the last element
-// of the array).
+// len(s) = 3
+// cap(s) = 5 from the first element of the slice (= second element of the array) to the last element of
+// the array.
 // Any attempt to extend a slice length beyond the available capacity will result in a runtime error.
 
 func Slices() {
@@ -66,7 +69,7 @@ func Slices() {
 	log.Printf("slice: %v, len: %d, cap: %d", s8, len(s8), cap(s8))
 	log.Printf("slice: %v, len: %d, cap: %d", s9, len(s9), cap(s9))
 
-	// The copy() function copies elements from one slice to another
+	// The copy() function copies elements from one slice to another.
 	// Its signature looks like this - func copy(dst, src []T) int
 	// It takes two slices - a destination slice, and a source slice.
 	// It then copies elements from the start of the source to the destination, stops at the end of its capacity and
@@ -82,17 +85,19 @@ func Slices() {
 	// The append() function appends new elements at the end of a given slice.
 	// Following is the signature of append function - func append(s []T, x ...T) []T
 	// It takes a slice and a variable number of arguments x …T.
-	// It then returns a new slice containing all the elements from the given slice as well as the new elements.
-	// If the given slice doesn’t have sufficient capacity to accommodate new elements then a new underlying array is
-	// allocated with bigger capacity.
-	// All the elements from the underlying array of the existing slice are copied to this new array, and then the new
-	// elements are appended.
+	// It then returns a new slice containing all the elements from the given slice as well as the new
+	// elements.
+	// If the given slice doesn’t have sufficient capacity to accommodate new elements then a new
+	// underlying array is allocated with bigger capacity and does not raise an error.
+	// All the elements from the underlying array of the existing slice are copied to this new array,
+	// and then the new elements are appended.
 	// SO APPENDING TO TOO SHORT ARRAYS MIGHT LEAD TO MEMORY LEAKS !!!
-	// However, if the slice has enough capacity to accommodate new elements, then the append() function re-uses its
-	// underlying array and appends new elements to the same array.
-	// When you append values to a nil slice, it allocates a new slice and returns the reference of the new slice.
-	// You can directly append one slice to another using the '...' operator. This operator expands the slice to a list
-	// of arguments
+	// However, if the slice has enough capacity to accommodate new elements, then the append() function
+	// re-uses its underlying array and appends new elements to the same array.
+	// When you append values to a nil slice, it allocates a new slice and returns the reference of the
+	// new slice.
+	// You can directly append one slice to another using the '...' operator. This operator expands the
+	// slice to a list of arguments.
 	slice1 := []string{"C", "C++", "Java"}           // len = 3; cap = 3
 	slice2 := append(slice1, "Python", "Ruby", "Go") // len = 6; cap = 6 with new underlying array
 	slice2[2] = "Rust"                               // does not affect slice1 since the underlying array is not the same

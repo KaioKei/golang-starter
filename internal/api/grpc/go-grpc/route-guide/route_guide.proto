@@ -1,0 +1,102 @@
+// gRPC can use protocol buffers as both its Interface Definition Language (IDL) and as its underlying
+// 'message' interchange format.
+// 'message' defines a data structure which is a logical record with key-value pairs.
+// This message must be compiled with a protocol buffer compiler, like 'protoc'.
+// The compiler will generate a client and a server code for the data access for compiled messages in
+// dedicated languages (java, go, etc ...).
+// These access are accessors like classes, getters and setters.
+// - On the server side, the compilation will implements the methods declared by the service and runs a
+//   gRPC server to handle client calls. The gRPC infrastructure decodes incoming requests, executes
+//   service methods, and encodes service responses.
+// - On the client side, the compilation has a local object known as stub (for some languages, the preferred
+//   term is client) that implements the same methods as the service. The client can then just call
+//   those methods on the local object, and the methods wrap the parameters for the call in the
+//   appropriate protocol buffer message type, send the requests to the server, and return the server’s
+//   protocol buffer responses.
+
+// protocol version, defining the syntax
+syntax = "proto3";
+
+// build information
+// package main and go_package that points to itself is used for build as a standalone
+package main;
+option go_package = "./route-guide";
+
+// Points are represented as latitude-longitude pairs in the E7 representation
+// (degrees multiplied by 10**7 and rounded to the nearest integer).
+// Latitudes should be in the range +/- 90 degrees and longitude should be in
+// the range +/- 180 degrees (inclusive).
+message Point {
+  int32 latitude = 1;
+  int32 longitude = 2;
+}
+
+// A latitude-longitude rectangle, represented as two diagonally opposite
+// points "lo" and "hi".
+message Rectangle {
+  // One corner of the rectangle.
+  // It doesn't matter how it is initialized
+  Point lo = 1;
+  // The other corner of the rectangle.
+  Point hi = 2;
+}
+
+// Feature names something at a given point.
+// If a feature could not be named, the name is empty.
+message Feature {
+  // The name of the feature.
+  string name = 1;
+  // The point where the feature is detected.
+  Point location = 2;
+}
+
+// RouteSummary is received in response to a RecordRoute rpc.
+// It contains the number of individual points received, the number of
+// detected features, and the total distance covered as the cumulative sum of
+// the distance between each point.
+message RouteSummary {
+  // The number of points received.
+  int32 pointCount = 1;
+  // The number of known features passed while traversing the route.
+  int32 featureCount = 2;
+  // The distance covered in metres.
+  int32 distance = 3;
+  // The duration of the traversal in seconds.
+  int32 elapsedTime = 4;
+}
+
+// A RouteNote is a message sent while at a given point.
+message RouteNote {
+  // The location from which the message is sent.
+  Point location = 1;
+  // The message to be sent.
+  string message = 2;
+}
+
+service RouteGuide {
+  // routes for 'Features' objects based on 'Point' coordinates.
+  // defines the GET route.
+  // the client will send a unique point.
+  // the server answers with a unique feature.
+  rpc GetFeature(Point) returns (Feature) {}
+  // defines the LIST route.
+  // the client will send a unique rectangle (four points).
+  // the server will returns a sequence of features in a stream in the rectangle.
+  // the compilation of the protobuf will create an interface for a grpc Stream Server that you will need
+  // to use for the response.
+  rpc ListFeatures(Rectangle) returns (stream Feature) {}
+  // defines the POST route.
+  // the client will send a sequence of points in a stream.
+  // the server will answer with a unique summary for the route object.
+  rpc RecordRoute(stream Point) returns (RouteSummary) {}
+  // defines the Chat route bidirectional stream.
+  // the client will send a sequence of messages in a stream.
+  // the server will answer a sequence of messages in a stream.
+  // the compilation of the protobuf will create an interface for a grpc Stream Server that you will need
+  // to use for the response.
+  // The two streams operate independently, so clients and servers can read and write in whatever order
+  // they like: for example, the server could wait to receive all the client messages before writing its
+  // responses, or it could alternately read a message then write a message, or some other combination of
+  // reads and writes. The order of messages in each stream is preserved.
+  rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+}

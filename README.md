@@ -42,7 +42,7 @@ go get <module import>
 # synchronize code's dependencies
 go mod tidy
 # if vendors
-go mod vendors
+go mod vendor
 ```
 
 ## Build Manually
@@ -102,3 +102,29 @@ API server listening at: [::]:2345
 ```
 
 4. Put a breakpoint in the code and create a Go Remote Debug configuration in the Intellij Runner to `localhost:2345`.
+
+## Protocol buffer
+
+Doc from [gRPC Quickstart](https://grpc.io/docs/languages/go/quickstart/).
+
+Install on your system :
+
+```sh
+sudo apt install -y protobuf-compiler
+protoc --version
+```
+
+Install the plugins for Golang :
+
+```sh
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+```
+
+Compile a proto file :
+
+```sh
+protoc --go_out=. --go_opt=paths=source_relative \
+    --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+    helloworld/helloworld.proto
+```

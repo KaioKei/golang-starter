@@ -82,11 +82,14 @@ func namedReturn() (resultByDefault, resultChanged int) {
 	return
 }
 
-func deferHelloWorld() {
+func deferHelloWorld() string {
 	//  A defer statement defers the execution of a function until the surrounding function returns.
 	// The deferred call's arguments are evaluated immediately, but the function call is not executed
 	// until the surrounding function returns.
+	// In this example, the string 'world !' will be printed after the string 'hello', because the print
+	// of 'world !' is executed after the return statement.
 	defer log.Println("world !")
 
 	log.Println("hello")
+	return "done"
 }

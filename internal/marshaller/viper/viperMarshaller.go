@@ -12,6 +12,18 @@ var (
 	data []byte
 )
 
+type people struct {
+	Firstname string
+	Lastname  string
+}
+
+type config struct {
+	Version string
+	People  []people
+}
+
+var Configuration config
+
 func Start(path string) {
 	// init viper
 	viper.SetConfigName("myconfig")
@@ -36,7 +48,18 @@ func Start(path string) {
 		} else {
 			log.Printf("File content error")
 		}
-	} else {
-		log.Printf("Version from input conf is: %s\n", viper.Get("version"))
 	}
+
+	log.Println("Configuration found and file format is ok")
+
+	// Unmarshalling
+	// validate schema with structure
+	if err := viper.Unmarshal(&Configuration); err != nil {
+		log.Println("Unable to validate the config schema:", path)
+		log.Fatalln(err)
+	}
+	log.Println("Configuration content is ok and loaded")
+	log.Println("Version:", Configuration.Version)
+	firstPeople := Configuration.People[0]
+	log.Printf("First people name is: '%s %s'", firstPeople.Firstname, firstPeople.Lastname)
 }

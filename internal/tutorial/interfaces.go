@@ -69,10 +69,10 @@ type Drawing struct {
 // To implement an interface, you just need to implement all the methods declared in the interface.
 // GO INTERFACES ARE IMPLEMENTED IMPLICITLY
 // It means unlike other languages like Java, you don’t need to explicitly specify that a type implements
-//   an interface using something like an 'implements' keyword. You just implement all the methods declared in
-//   the interface.
+// an interface using something like an 'implements' keyword. You just implement all the methods declared
+// in the interface.
 // An interface is implicitly implemented using a type where :
-//   - the type is used in methods' receiver
+//   - the type is used in methods' receiver (argument)
 //   - the methods match all the interface functions (all the necessary methods signatures)
 func Interfaces() {
 	var s Shape

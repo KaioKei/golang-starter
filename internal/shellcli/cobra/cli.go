@@ -43,6 +43,7 @@ func init() {
 	createCmd.AddCommand(createFileCmd, createDirCmd)
 
 	// optional global flags : accessed by subcommands
+	// The P suffix denotes a function that accepts a single letter flag name in addition to the full name
 	rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", false, "add more info")             // verbose flag for all commands under root
 	createCmd.PersistentFlags().StringVarP(&Path, "path", "p", "", "Path of the resource to create") // path flag for all commands under create
 
@@ -50,6 +51,8 @@ func init() {
 	rootCmd.Flags().BoolVarP(&Version, "version", "V", false, "print the version") // version flag only for root command
 
 	// mark mandatory flags
+	// MarkPersistentFlagRequired is to add a required flag to every sub-commands from 'create'
+	// MarkFlagRequired Would only add a required flag to the 'create' method but not to sub-commands
 	err := createCmd.MarkPersistentFlagRequired("path") // mark the flag path as mandatory for all create subcommand
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
