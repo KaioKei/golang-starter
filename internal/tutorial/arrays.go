@@ -13,7 +13,7 @@ func Arrays() {
 	firstString := s[0]
 	log.Printf("strings array: %v, first string: %s", s, firstString)
 
-	// online initialization
+	// one-liner initialization
 	b := [5]int{1, 2, 3, 4, 5}
 	c := [3]int{42} // first element initialization so equal to [42, 0, 0]
 	log.Printf("init array: %v, first element init: %v", b, c)

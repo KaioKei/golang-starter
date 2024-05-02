@@ -140,4 +140,10 @@ func forStatement() {
 		}
 		log.Printf("%d ", odd)
 	}
+
+	// ranged loop
+	fruits := []string{"apple", "banana", "orange"}
+	for i, fruit := range fruits {
+		log.Printf("At index '%d', fruit is : '%s'", i, fruit)
+	}
 }

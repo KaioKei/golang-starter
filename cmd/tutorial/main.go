@@ -16,12 +16,13 @@ func main() {
 	tutorial.Pointers()
 	tutorial.Structures()
 	tutorial.Files()
+	tutorial.Enums()
 
 	//tutorial.confidential cannot be accessed
 	//tutorial.Public{packageSecret: "secret"} raises an error
 	//s1 := tutorial.Public{PackagePublic: "public"} // is ok
 	//log.Print(s1)
-
+	//
 	//tutorial.Methods()
 	//tutorial.Interfaces()
 	//tutorial.Files()

@@ -10,16 +10,16 @@
 ## Libs
 
 * Cli :
-  * Cobra
+    * Cobra
 * Logging :
-  * zap
+    * zap
 * Files Mapping :
-  * Viper
+    * Viper
 * ORM :
-  * Gorm
+    * Gorm
 * API :
-  * REST :
-    * Gin
+    * REST :
+        * Gin
 
 ## Install commands
 
@@ -52,6 +52,15 @@ go mod vendor
 cd cmd/hello
 go build
 ./hello
+```
+
+## Testing one file
+
+Files named `impl1.go`, `utils.go` etc .. are implementation files containing required function and vars definition for
+the test
+
+```sh
+go test impl1_test.go impl1.go utils.go
 ```
 
 ## Remote debug
@@ -92,8 +101,8 @@ You can use the `hello-debug` command to debug remotely :
 1. `cp cmd/hello-debug/Dockerfile ./`
 2. `podman build -t hello-debug .`
 3. `podman run -d --name hello-debug -p 2345:2345 --security-opt label=disable --privileged localhost/hello-debug`. From
-here, the code in the container won't start before the connexion is established with the debug client. You can check
-this behavior using :
+   here, the code in the container won't start before the connexion is established with the debug client. You can check
+   this behavior using :
 
 ```sh
 $ podman logs -f hello-debug
@@ -127,4 +136,44 @@ Compile a proto file :
 protoc --go_out=. --go_opt=paths=source_relative \
     --go-grpc_out=. --go-grpc_opt=paths=source_relative \
     helloworld/helloworld.proto
+```
+
+## Private dependency with authentication
+
+In case you need to get a module from a private repo with https auth, you need to configure the authentication in
+the `.git-credentials` file and configure git to use this file.
+
+## Get development branch of a module
+
+```sh
+# if branch name is 'aes-cbc-support'
+go get github.com/IceManGreen/crypto11@aes-cbc-support                                                                            [29/534]
+> go: downloading github.com/pkg/errors v0.9.1
+> go: added github.com/IceManGreen/crypto11 v0.0.0-20240118165436-b187874cdf68
+go mod tidy
+```
+
+## Replace a dependency by another
+
+1. Remove vendor folder and mod cache :
+
+```sh
+cd mygoproject/
+rm -rf vendor/ go.sum
+go clean -modcache
+```
+
+2. Remove all reference of the old dependency in `go.mod`.
+3. Replace in all `*.go` files of the project the old dependency by the new one
+4. Get the new dependency with `GOPROXY=direct go get -u -v github.com/group/repo`. For a dev dependency, you can directly
+   type `GOPROXY=direct go get -uv github.com/group/repo@branch`
+5. Run `go mod tidy` and `go mod vendor`
+
+## Force update dependency on newer commits
+
+```sh
+# on default branch :
+GOPROXY=direct go get -u github.com/IceManGreen/gose
+# on a specific branch :
+GOPROXY=direct go get -u github.com/IceManGreen/gose@aes-cbc-support 
 ```

@@ -72,6 +72,8 @@ func raiseCustomError(mybool bool) (string, *MyError) {
 	return "you did not raised an error", nil
 }
 
+// WrappedError is a Wrapped error
+// This type is used when you need to raise an error from another known error type
 type WrappedError struct {
 	Context string
 	Err     error
